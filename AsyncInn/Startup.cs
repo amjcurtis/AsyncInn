@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using AsyncInn.Data;
 
 namespace AsyncInn
 {
@@ -16,6 +17,9 @@ namespace AsyncInn
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
+
+			services.AddDbContext<AsyncInnDbContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("Server=(localdb)\\MSSQLLocalDB;Database=AsyncInn;Trusted_Connection=True;MultipleActiveResultSets=true")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
