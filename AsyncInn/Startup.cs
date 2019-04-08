@@ -15,7 +15,7 @@ namespace AsyncInn
 
 		public Startup(IConfiguration configuration)
 		{
-
+			Configuration = configuration;
 		}
 
 		// This method gets called by the runtime. Use this method to add services to the container.
@@ -25,7 +25,7 @@ namespace AsyncInn
 			services.AddMvc();
 
 			services.AddDbContext<AsyncInnDbContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("Server=(localdb)\\MSSQLLocalDB;Database=AsyncInn;Trusted_Connection=True;MultipleActiveResultSets=true")));
+				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
