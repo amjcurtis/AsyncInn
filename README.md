@@ -1,5 +1,5 @@
 # Async Inn
-#### Code 401, Lab 13 "Introduction to Entity Framework"
+#### Code 401
 ##### *Author: Andrew Curtis*
 
 ------------------------------
@@ -57,4 +57,7 @@ Then select and open ```AsyncInn.sln```
 ## Change Log
 
 #### v1.1
+
 `2019-04-04`: Built out initial project scaffolding, models, and Home view. Added basic styling for proof-of-life and ran app successfully from server. 
+
+`2019-04-08`: Scaffolded out Controllers and their associated views, seeded database with initial content, started on revising Home Page navigation and implementing "Layout" Razor View. 

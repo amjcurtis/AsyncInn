@@ -19,8 +19,41 @@ namespace AsyncInn.Data
 			// Establish composite keys
 			modelBuilder.Entity<RoomAmenities>().HasKey(ra => new { ra.AmenitiesID, ra.RoomID });
 			modelBuilder.Entity<HotelRoom>().HasKey(hr => new { hr.HotelID, hr.RoomNumber });
-		}
 
+			// Seeding DB //////////////////////////
+			// Seed hotels
+			modelBuilder.Entity<Hotel>().HasData(
+				new Hotel
+				{
+					ID = 1,
+					Name = "Hotel 1",
+					StreetAddress = "21B Baker St.",
+					City = "London",
+					State = "Londonshire",
+					Phone = 1234567890
+				}
+			);
+
+			// Seed rooms
+			modelBuilder.Entity<Room>().HasData(
+				new Room
+				{
+					ID = 1,
+					Name = "Presidential Suite",
+					Layout = Layout.Studio
+				}
+			);
+
+			// Seed amenities
+			modelBuilder.Entity<Amenities>().HasData(
+				new Amenities
+				{
+					ID = 1,
+					Name = "A/C"
+				}
+			);
+		}
+		
 		public DbSet<Hotel> Hotels { get; set; }
 		public DbSet<Room> Rooms { get; set; }
 		public DbSet<HotelRoom> HotelRooms { get; set; }
