@@ -26,10 +26,46 @@ namespace AsyncInn.Data
 				new Hotel
 				{
 					ID = 1,
-					Name = "Hotel 1",
+					Name = "The Windsor Hotel",
 					StreetAddress = "21B Baker St.",
 					City = "London",
 					State = "Londonshire",
+					Phone = 1234567890
+				},
+				new Hotel
+				{
+					ID = 2,
+					Name = "The Empress Hotel",
+					StreetAddress = "1400 Commercial Ave.",
+					City = "Victoria",
+					State = "British Columbia",
+					Phone = 1234567890
+				},
+				new Hotel
+				{
+					ID = 3,
+					Name = "Best Western",
+					StreetAddress = "12 Division St.",
+					City = "Mt. Vernon",
+					State = "WA",
+					Phone = 1234567890
+				},
+				new Hotel
+				{
+					ID = 4,
+					Name = "4 Point Sheraton",
+					StreetAddress = "1240 Lakeway Dr.",
+					City = "Bellingham",
+					State = "WA",
+					Phone = 1234567890
+				},
+				new Hotel
+				{
+					ID = 5,
+					Name = "Super 8",
+					StreetAddress = "15 Olive Way",
+					City = "Seattle",
+					State = "WA",
 					Phone = 1234567890
 				}
 			);
@@ -39,8 +75,38 @@ namespace AsyncInn.Data
 				new Room
 				{
 					ID = 1,
-					Name = "Presidential Suite",
+					Name = "Bachelor Pad",
 					Layout = Layout.Studio
+				},
+				new Room
+				{
+					ID = 2,
+					Name = "Penthouse",
+					Layout = Layout.Studio
+				},
+				new Room
+				{
+					ID = 3,
+					Name = "Lone Ranger",
+					Layout = Layout.OneBedroom
+				},
+				new Room
+				{
+					ID = 4,
+					Name = "Honeymoon Suite",
+					Layout = Layout.OneBedroom
+				},
+				new Room
+				{
+					ID = 5,
+					Name = "Presidential Suite",
+					Layout = Layout.TwoBedroom
+				},
+				new Room
+				{
+					ID = 6,
+					Name = "Cardinal's Suite",
+					Layout = Layout.TwoBedroom
 				}
 			);
 
@@ -50,6 +116,26 @@ namespace AsyncInn.Data
 				{
 					ID = 1,
 					Name = "A/C"
+				},
+				new Amenities
+				{
+					ID = 2,
+					Name = "Toaster"
+				},
+				new Amenities
+				{
+					ID = 3,
+					Name = "Coffee maker"
+				},
+				new Amenities
+				{
+					ID = 4,
+					Name = "Ocean view"
+				},
+				new Amenities
+				{
+					ID = 5,
+					Name = "Hot tub"
 				}
 			);
 		}
