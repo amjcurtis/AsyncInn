@@ -32,7 +32,7 @@ namespace AsyncInn.Data
 					State = "Londonshire",
 					Phone = 1234567890
 				}
-				);
+			);
 
 			// Seed rooms
 			modelBuilder.Entity<Room>().HasData(
@@ -42,7 +42,7 @@ namespace AsyncInn.Data
 					Name = "Presidential Suite",
 					Layout = Layout.Studio
 				}
-				);
+			);
 
 			// Seed amenities
 			modelBuilder.Entity<Amenities>().HasData(
@@ -51,7 +51,7 @@ namespace AsyncInn.Data
 					ID = 1,
 					Name = "A/C"
 				}
-				);
+			);
 		}
 		
 		public DbSet<Hotel> Hotels { get; set; }
