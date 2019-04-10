@@ -7,10 +7,11 @@ namespace AsyncInn.Models.Interfaces
 {
 	public interface IHotelManager
 	{
+
 		Task CreateHotel(Hotel hotel);
 
 		// Modify a Hotel
-		void ModifyHotel(int id);
+		void UpdateHotel(int id, Hotel hotel);
 
 		// Delete a hotel
 		bool DeleteHotel(int id);
@@ -21,8 +22,10 @@ namespace AsyncInn.Models.Interfaces
 		// Get all the hotels
 		Task<List<Hotel>> GetHotels();
 
-		Room GetRoom(int id);
+		// Get a single room
+		Task<Room> GetRoom(int id);
 
-		List<Room> GetAllRooms();
+		// Get all the rooms
+		Task<List<Room>> GetAllRooms();
 	}
 }

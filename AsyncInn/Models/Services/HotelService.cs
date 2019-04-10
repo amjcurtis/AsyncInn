@@ -11,29 +11,64 @@ namespace AsyncInn.Models.Services
 	public class HotelService : IHotelManager
 	{
 
+		// Store reference to DB under private variable
 		private AsyncInnDbContext _context;
 
+		/// <summary>
+		/// Constructor for HotelService (DI/middleware service)
+		/// </summary>
+		/// <param name="context">database context</param>
 		public HotelService(AsyncInnDbContext context)
 		{
 			_context = context;
 		}
 
+		/// <summary>
+		/// Creates new hotel instance
+		/// </summary>
+		/// <param name="hotel">Hotel</param>
+		/// <returns>async Task</returns>
 		public async Task CreateHotel(Hotel hotel)
 		{
 			_context.Add(hotel);
 			await _context.SaveChangesAsync();
 		}
 
-		public void ModifyHotel(int id)
+		/// <summary>
+		/// Updates a specified hotel instance in DB
+		/// </summary>
+		/// <param name="id">ID of hotel instance</param>
+		/// <param name="hotel">hotel instance</param>
+		public void UpdateHotel(int id, Hotel hotel)
 		{
-			throw new NotImplementedException();
+			if (id == hotel.ID)
+			{
+				_context.Update(hotel);
+				_context.SaveChanges();
+			}
 		}
 
+		/// <summary>
+		/// Deletes hotel instance from DB
+		/// </summary>
+		/// <param name="id">hotel ID</param>
+		/// <returns>true if hotel not already null</returns>
 		public bool DeleteHotel(int id)
 		{
-			throw new NotImplementedException();
+			var hotel = _context.Hotels.Where(h => h.ID == id);
+			if (hotel != null)
+			{
+				_context.Remove(hotel);
+				_context.SaveChanges();
+			}
+			return true;
 		}
 
+		/// <summary>
+		/// Gets a hotel instance by ID from DB
+		/// </summary>
+		/// <param name="id">hotel ID</param>
+		/// <returns>hotel object or null if hotel is null</returns>
 		public async Task<Hotel> GetHotel(int id)
 		{
 			var hotel = await _context.Hotels.FindAsync(id);
@@ -44,25 +79,32 @@ namespace AsyncInn.Models.Services
 			return hotel;
 		}
 
+		/// <summary>
+		/// Gets all hotel instances in DB and returns in a list
+		/// </summary>
+		/// <returns>list of Hotel objects</returns>
 		public async Task<List<Hotel>> GetHotels()
 		{
 			return await _context.Hotels.ToListAsync();
 		}
 
-		public Room GetRoom(int id)
+		/// <summary>
+		/// Gets a room instance by ID from DB
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public async Task<Room> GetRoom(int id)
 		{
-			//TODO Write method to get a room
-			
-			// This will likely be part of solution
-			//_context.Rooms;
-
-			return null;
+			return await _context.Rooms.FirstOrDefaultAsync(r => r.ID == id);
 		}
 
-		public List<Room> GetAllRooms()
+		/// <summary>
+		/// Gets all room instances in DB and returns in a list
+		/// </summary>
+		/// <returns>list of Room objects</returns>
+		public async Task<List<Room>> GetAllRooms()
 		{
-			//TODO Write method to get all rooms
-
+			return await _context.Rooms.ToListAsync();
 		}
 	}
 }

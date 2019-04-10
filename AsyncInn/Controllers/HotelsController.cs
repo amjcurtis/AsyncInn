@@ -12,7 +12,8 @@ namespace AsyncInn.Controllers
 {
     public class HotelsController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+
+		private readonly AsyncInnDbContext _context;
 
         public HotelsController(AsyncInnDbContext context)
         {
@@ -125,7 +126,7 @@ namespace AsyncInn.Controllers
             }
 
             var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.ID == id);
+									  .FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
