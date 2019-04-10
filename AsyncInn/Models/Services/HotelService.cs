@@ -68,7 +68,7 @@ namespace AsyncInn.Models.Services
 		/// Gets a hotel instance by ID from DB
 		/// </summary>
 		/// <param name="id">hotel ID</param>
-		/// <returns>hotel object or null if hotel is null</returns>
+		/// <returns>hotel object or null if hotel null</returns>
 		public async Task<Hotel> GetHotel(int id)
 		{
 			var hotel = await _context.Hotels.FindAsync(id);
@@ -92,7 +92,7 @@ namespace AsyncInn.Models.Services
 		/// Gets a room instance by ID from DB
 		/// </summary>
 		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <returns>room object or null if room null</returns>
 		public async Task<Room> GetRoom(int id)
 		{
 			return await _context.Rooms.FirstOrDefaultAsync(r => r.ID == id);
@@ -105,6 +105,16 @@ namespace AsyncInn.Models.Services
 		public async Task<List<Room>> GetAllRooms()
 		{
 			return await _context.Rooms.ToListAsync();
+		}
+
+		/// <summary>
+		/// Checks whether a hotel with specified ID exists
+		/// </summary>
+		/// <param name="id">hotel ID</param>
+		/// <returns>boolean</returns>
+		public bool HotelExists(int id)
+		{
+			return _context.Hotels.Any(h => h.ID == id);
 		}
 	}
 }

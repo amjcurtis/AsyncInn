@@ -27,5 +27,8 @@ namespace AsyncInn.Models.Interfaces
 
 		// Get all the rooms
 		Task<List<Room>> GetAllRooms();
+
+		// Check whether hotel exists
+		bool HotelExists(int id);
 	}
 }
