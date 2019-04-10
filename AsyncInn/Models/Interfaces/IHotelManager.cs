@@ -8,9 +8,10 @@ namespace AsyncInn.Models.Interfaces
 	public interface IHotelManager
 	{
 
+		// Create new hotel instance
 		Task CreateHotel(Hotel hotel);
 
-		// Modify a Hotel
+		// Modify a hotel
 		void UpdateHotel(int id, Hotel hotel);
 
 		// Delete a hotel

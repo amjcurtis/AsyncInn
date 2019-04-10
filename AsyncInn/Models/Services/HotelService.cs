@@ -1,10 +1,10 @@
-﻿using AsyncInn.Data;
-using AsyncInn.Models.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AsyncInn.Data;
+using AsyncInn.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace AsyncInn.Models.Services
 {
@@ -55,7 +55,7 @@ namespace AsyncInn.Models.Services
 		/// <returns>true if hotel not already null</returns>
 		public bool DeleteHotel(int id)
 		{
-			var hotel = _context.Hotels.Where(h => h.ID == id);
+			var hotel = _context.Hotels.FirstOrDefault(h => h.ID == id);
 			if (hotel != null)
 			{
 				_context.Remove(hotel);

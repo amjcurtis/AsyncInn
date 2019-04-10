@@ -70,12 +70,12 @@ namespace AsyncInn.Controllers
         // GET: Hotels/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            if (id < 0)
+            if (id < 1)
             {
                 return NotFound();
             }
 
-            var hotel = _hotels.GetHotel(id);
+            var hotel = await _hotels.GetHotel(id);
             if (hotel == null)
             {
                 return NotFound();
@@ -120,7 +120,7 @@ namespace AsyncInn.Controllers
         // GET: Hotels/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            if (id < 0)
+            if (id < 1)
             {
                 return NotFound();
             }
