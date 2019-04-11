@@ -62,9 +62,6 @@ namespace AsyncInn.Models.Services
 				_context.SaveChanges();
 			}
 			return true;
-			//_context.Remove(room);
-			//_context.SaveChanges();
-
 		}
 
 		/// <summary>

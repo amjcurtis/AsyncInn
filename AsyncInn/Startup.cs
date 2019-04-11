@@ -24,9 +24,11 @@ namespace AsyncInn
 		{
 			services.AddMvc();
 
+			// Instantiates database // Implements singleton design pattern (standard for DBs in MVC)
 			services.AddDbContext<AsyncInnDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+			// Mappings between interface and service provider
 			services.AddScoped<IHotelManager, HotelService>();
 			services.AddScoped<IRoomManager, RoomService>();
 		}

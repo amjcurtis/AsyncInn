@@ -72,7 +72,7 @@ namespace AsyncInn.Controllers
                 return NotFound();
             }
 
-            var room = _rooms.GetRoom(id);
+            var room = await _rooms.GetRoom(id);
             if (room == null)
             {
                 return NotFound();
@@ -139,7 +139,8 @@ namespace AsyncInn.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RoomExists(int id)
+		// Checks whether room exists in DB
+		private bool RoomExists(int id)
         {
 			return _rooms.RoomExists(id);
         }
