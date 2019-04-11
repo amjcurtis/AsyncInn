@@ -12,7 +12,7 @@ namespace AsyncInn.Models.Services
 	{
 
 		// Store reference to DB under private variable
-		private AsyncInnDbContext _context;
+		private readonly AsyncInnDbContext _context;
 
 		/// <summary>
 		/// Constructor for HotelService (DI/middleware service)
@@ -91,7 +91,7 @@ namespace AsyncInn.Models.Services
 		/// <summary>
 		/// Gets a room instance by ID from DB
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param name="id">room ID</param>
 		/// <returns>room object or null if room null</returns>
 		public async Task<Room> GetRoom(int id)
 		{

@@ -11,7 +11,7 @@ namespace AsyncInn.Models.Interfaces
 		// Create a new room instance
 		Task CreateRoom(Room room);
 
-		// Modify a room
+		// Edit a room
 		void UpdateRoom(int id, Room room);
 
 		// Delete a room
@@ -23,7 +23,7 @@ namespace AsyncInn.Models.Interfaces
 		// Get all rooms
 		Task<List<Room>> GetAllRooms();
 
-		// Check whether room exists
+		// Check whether a given room exists
 		bool RoomExists(int id);
 	}
 }

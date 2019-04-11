@@ -11,7 +11,7 @@ namespace AsyncInn.Models.Interfaces
 		// Create new hotel instance
 		Task CreateHotel(Hotel hotel);
 
-		// Modify a hotel
+		// Edit a hotel
 		void UpdateHotel(int id, Hotel hotel);
 
 		// Delete a hotel
@@ -29,7 +29,7 @@ namespace AsyncInn.Models.Interfaces
 		// Get all the rooms
 		Task<List<Room>> GetAllRooms();
 
-		// Check whether hotel exists
+		// Check whether a given hotel exists
 		bool HotelExists(int id);
 	}
 }

@@ -12,7 +12,7 @@ namespace AsyncInn.Models.Services
 	{
 
 		// Store reference to DB under private variable
-		private AsyncInnDbContext _context;
+		private readonly AsyncInnDbContext _context;
 
 		/// <summary>
 		/// Constructor for RoomService (DI/middleware service)
