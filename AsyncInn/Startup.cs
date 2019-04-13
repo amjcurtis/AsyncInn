@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-
+using AsyncInn.Models.Interfaces;
+using AsyncInn.Models.Services;
 
 namespace AsyncInn
 {
@@ -18,17 +19,22 @@ namespace AsyncInn
 			Configuration = configuration;
 		}
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+		// This method gets called by the runtime and is used to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
 
+			// Instantiates database // Implements singleton design pattern (standard for DBs in MVC)
 			services.AddDbContext<AsyncInnDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			// Mappings between interface and service provider
+			services.AddScoped<IHotelManager, HotelService>();
+			services.AddScoped<IRoomManager, RoomService>();
+			services.AddScoped<IAmenitiesManager, AmenitiesService>();
 		}
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		// This method gets called by the runtime and is used to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			if (env.IsDevelopment())
@@ -37,6 +43,8 @@ namespace AsyncInn
 			}
 
 			app.UseStaticFiles();
+			
+			// Set default route map
 			app.UseMvc(route =>
 			{
 				route.MapRoute(
@@ -45,6 +53,8 @@ namespace AsyncInn
 					);
 			});
 
+			// Fallback or proof-of-life in case we haven't added sth more specific like app.UseMvc
+			// Anything below app.Run will not be run
 			app.Run(async (context) =>
 			{
 				await context.Response.WriteAsync("Hello World!");

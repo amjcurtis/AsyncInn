@@ -7,39 +7,39 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Controllers
 {
     public class AmenitiesController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IAmenitiesManager _amenities;
 
-        public AmenitiesController(AsyncInnDbContext context)
+        public AmenitiesController(IAmenitiesManager amenities)
         {
-            _context = context;
+            _amenities = amenities;
         }
 
         // GET: Amenities
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Amenities.ToListAsync());
+			List<Amenities> myAmenities = await _amenities.GetAllAmenities();
+			return View(myAmenities);
         }
 
         // GET: Amenities/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id < 1)
             {
                 return NotFound();
             }
 
-            var amenities = await _context.Amenities
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var amenities = await _amenities.GetAmenity(id);
             if (amenities == null)
             {
                 return NotFound();
             }
-
             return View(amenities);
         }
 
@@ -58,22 +58,21 @@ namespace AsyncInn.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(amenities);
-                await _context.SaveChangesAsync();
+                await _amenities.CreateAmenity(amenities);
                 return RedirectToAction(nameof(Index));
             }
             return View(amenities);
         }
 
         // GET: Amenities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id < 1)
             {
                 return NotFound();
             }
 
-            var amenities = await _context.Amenities.FindAsync(id);
+            var amenities = await _amenities.GetAmenity(id);
             if (amenities == null)
             {
                 return NotFound();
@@ -97,12 +96,11 @@ namespace AsyncInn.Controllers
             {
                 try
                 {
-                    _context.Update(amenities);
-                    await _context.SaveChangesAsync();
+                    _amenities.UpdateAmenity(id, amenities);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AmenitiesExists(amenities.ID))
+                    if (!AmenityExists(amenities.ID))
                     {
                         return NotFound();
                     }
@@ -117,20 +115,18 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Amenities/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            if (id < 1)
             {
                 return NotFound();
             }
 
-            var amenities = await _context.Amenities
-                .FirstOrDefaultAsync(m => m.ID == id);
+			var amenities = await _amenities.GetAmenity(id);
             if (amenities == null)
             {
                 return NotFound();
             }
-
             return View(amenities);
         }
 
@@ -139,15 +135,13 @@ namespace AsyncInn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var amenities = await _context.Amenities.FindAsync(id);
-            _context.Amenities.Remove(amenities);
-            await _context.SaveChangesAsync();
+            _amenities.DeleteAmenity(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AmenitiesExists(int id)
+        private bool AmenityExists(int id)
         {
-            return _context.Amenities.Any(e => e.ID == id);
+            return _amenities.AmenityExists(id);
         }
     }
 }
