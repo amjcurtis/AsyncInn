@@ -17,6 +17,9 @@ namespace AsyncInn
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
+			//var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+			//builder.AddUserSecrets<Startup>();
+			//Configuration = builder.Build();
 		}
 
 		// This method gets called by the runtime and is used to add services to the container.
