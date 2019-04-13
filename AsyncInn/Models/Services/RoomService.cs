@@ -71,7 +71,6 @@ namespace AsyncInn.Models.Services
 		/// <returns>room object or null if room null</returns>
 		public async Task<Room> GetRoom(int id)
 		{
-			//var room = await _context.Rooms.FindAsync(id);
 			var room = await _context.Rooms
 						.Include(r => r.RoomAmenities)
 						.ThenInclude(ra => ra.Amenities)
