@@ -75,11 +75,6 @@ namespace AsyncInn.Models.Services
 					  .Include(r => r.HotelRoom)
 					  .ThenInclude(hr => hr.Room)
 					  .FirstOrDefaultAsync(x => x.ID == id);
-						//await _context.Hotels.FindAsync(id);
-
-			//hotel.HotelRoom = await _context.HotelRooms
-			//				.Where(h => h.HotelID == id).ToListAsync();
-			
 
 			if (hotel == null)
 			{
