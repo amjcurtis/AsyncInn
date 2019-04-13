@@ -72,7 +72,7 @@ namespace AsyncInn.Models.Services
 		public async Task<Hotel> GetHotel(int id)
 		{
 			var hotel = await _context.Hotels
-					  .Include(r => r.HotelRoom)
+					  .Include(h => h.HotelRoom)
 					  .ThenInclude(hr => hr.Room)
 					  .FirstOrDefaultAsync(x => x.ID == id);
 
