@@ -71,7 +71,16 @@ namespace AsyncInn.Models.Services
 		/// <returns>hotel object or null if hotel null</returns>
 		public async Task<Hotel> GetHotel(int id)
 		{
-			var hotel = await _context.Hotels.FindAsync(id);
+			var hotel = await _context.Hotels
+					  .Include(r => r.HotelRoom)
+					  .ThenInclude(hr => hr.Room)
+					  .FirstOrDefaultAsync(x => x.ID == id);
+						//await _context.Hotels.FindAsync(id);
+
+			//hotel.HotelRoom = await _context.HotelRooms
+			//				.Where(h => h.HotelID == id).ToListAsync();
+			
+
 			if (hotel == null)
 			{
 				return null;

@@ -24,6 +24,9 @@ namespace AsyncInn.Controllers
         // GET: Hotels
         public async Task<IActionResult> Index()
         {
+			//TODO Either add searchString param to this method to enable user to search by City or 
+
+
 			List<Hotel> myHotels = await _hotels.GetHotels();
 			return View(myHotels);
         }

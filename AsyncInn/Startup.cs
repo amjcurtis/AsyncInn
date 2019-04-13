@@ -43,6 +43,8 @@ namespace AsyncInn
 			}
 
 			app.UseStaticFiles();
+			
+			// Set default route map
 			app.UseMvc(route =>
 			{
 				route.MapRoute(
@@ -51,6 +53,8 @@ namespace AsyncInn
 					);
 			});
 
+			// Fallback or proof-of-life in case we haven't added sth more specific like app.UseMvc
+			// Anything below app.Run will not be run
 			app.Run(async (context) =>
 			{
 				await context.Response.WriteAsync("Hello World!");
