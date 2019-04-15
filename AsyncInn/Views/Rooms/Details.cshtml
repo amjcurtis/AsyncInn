@@ -1,5 +1,7 @@
 ﻿@model AsyncInn.Models.Room
-
+@{
+    Layout = "_Layout";
+}
 @{
     ViewData["Title"] = "Details";
 }
@@ -10,22 +12,22 @@
     <h4>Room</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Layout)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Layout)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             <p>Amenities: @Model.RoomAmenities.Count</p>
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @foreach (var roomamenity in Model.RoomAmenities)
             {
                 <p>@roomamenity.Amenities.Name</p>
