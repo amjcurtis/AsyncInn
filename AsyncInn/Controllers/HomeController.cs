@@ -8,6 +8,7 @@ namespace AsyncInn.Controllers
 {
 	public class HomeController : Controller
 	{
+
 		[HttpGet]
 		public IActionResult Index()
 		{

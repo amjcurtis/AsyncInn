@@ -102,6 +102,43 @@ namespace AsyncInn.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Amenities",
+                columns: new[] { "ID", "Name" },
+                values: new object[,]
+                {
+                    { 1, "A/C" },
+                    { 2, "Toaster" },
+                    { 3, "Coffee maker" },
+                    { 4, "Ocean view" },
+                    { 5, "Hot tub" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hotels",
+                columns: new[] { "ID", "City", "Name", "Phone", "State", "StreetAddress" },
+                values: new object[,]
+                {
+                    { 1, "London", "The Windsor Hotel", 1234567890, "Londonshire", "21B Baker St." },
+                    { 2, "Victoria", "The Empress Hotel", 1234567890, "British Columbia", "1400 Commercial Ave." },
+                    { 3, "Mt. Vernon", "Best Western", 1234567890, "WA", "12 Division St." },
+                    { 4, "Bellingham", "4 Point Sheraton", 1234567890, "WA", "1240 Lakeway Dr." },
+                    { 5, "Seattle", "Super 8", 1234567890, "WA", "15 Olive Way" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "ID", "Layout", "Name" },
+                values: new object[,]
+                {
+                    { 1, 0, "Bachelor Pad" },
+                    { 2, 0, "Penthouse" },
+                    { 3, 1, "Lone Ranger" },
+                    { 4, 1, "Honeymoon Suite" },
+                    { 5, 2, "Presidential Suite" },
+                    { 6, 2, "Cardinal's Suite" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_HotelRooms_RoomID",
                 table: "HotelRooms",

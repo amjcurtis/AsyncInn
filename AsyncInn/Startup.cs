@@ -13,10 +13,14 @@ namespace AsyncInn
 	public class Startup
 	{
 		public IConfiguration Configuration { get; }
+		public IHostingEnvironment Environment { get; }
 
-		public Startup(IConfiguration configuration)
+		public Startup(IHostingEnvironment environment)
 		{
-			Configuration = configuration;
+			Environment = environment;
+			var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+			builder.AddUserSecrets<Startup>();
+			Configuration = builder.Build();
 		}
 
 		// This method gets called by the runtime and is used to add services to the container.
@@ -24,9 +28,12 @@ namespace AsyncInn
 		{
 			services.AddMvc();
 
+			var connectionString = Environment.IsDevelopment()
+							? Configuration["ConnectionStrings:DefaultConnection"]
+							: Configuration["ConnectionStrings:ProductionConnection"];
+
 			// Instantiates database // Implements singleton design pattern (standard for DBs in MVC)
-			services.AddDbContext<AsyncInnDbContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddDbContext<AsyncInnDbContext>(options => options.UseSqlServer(connectionString));
 
 			// Mappings between interface and service provider
 			services.AddScoped<IHotelManager, HotelService>();
