@@ -61,3 +61,5 @@ Then select and open ```AsyncInn.sln```
 `2019-04-04`: Built out initial project scaffolding, models, and Home view. Added basic styling for proof-of-life and ran app successfully from server. 
 
 `2019-04-08`: Scaffolded out Controllers and their associated views, seeded database with initial content, started on revising Home Page navigation and implementing "Layout" Razor View. 
+
+`2019-04-14`: Added basic styles; deployed site to Azure.
