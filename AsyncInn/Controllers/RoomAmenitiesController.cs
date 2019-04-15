@@ -9,7 +9,8 @@ namespace AsyncInn.Controllers
 {
     public class RoomAmenitiesController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+
+		private readonly AsyncInnDbContext _context;
 
         public RoomAmenitiesController(AsyncInnDbContext context)
         {

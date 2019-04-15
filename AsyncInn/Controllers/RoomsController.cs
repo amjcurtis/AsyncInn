@@ -13,7 +13,8 @@ namespace AsyncInn.Controllers
 {
     public class RoomsController : Controller
     {
-        private readonly IRoomManager _rooms;
+
+		private readonly IRoomManager _rooms;
 
         public RoomsController(IRoomManager rooms)
         {

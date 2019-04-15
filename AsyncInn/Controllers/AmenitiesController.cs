@@ -13,7 +13,8 @@ namespace AsyncInn.Controllers
 {
     public class AmenitiesController : Controller
     {
-        private readonly IAmenitiesManager _amenities;
+
+		private readonly IAmenitiesManager _amenities;
 
         public AmenitiesController(IAmenitiesManager amenities)
         {

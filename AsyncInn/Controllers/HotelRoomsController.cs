@@ -12,7 +12,8 @@ namespace AsyncInn.Controllers
 {
     public class HotelRoomsController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+
+		private readonly AsyncInnDbContext _context;
 
         public HotelRoomsController(AsyncInnDbContext context)
         {

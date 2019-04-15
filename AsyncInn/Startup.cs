@@ -28,7 +28,7 @@ namespace AsyncInn
 		{
 			services.AddMvc();
 
-			string connectionString = Environment.IsDevelopment()
+			var connectionString = Environment.IsDevelopment()
 							? Configuration["ConnectionStrings:DefaultConnection"]
 							: Configuration["ConnectionStrings:ProductionConnection"];
 
